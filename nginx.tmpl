@@ -234,6 +234,10 @@ server {
 	{{ end }}
 
 	location / {
+		proxy_connect_timeout       300;
+		proxy_send_timeout          300;
+		proxy_read_timeout          300;
+		send_timeout                300;
 		{{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
 		uwsgi_pass {{ trim $proto }}://{{ trim $upstream_name }};
@@ -281,6 +285,10 @@ server {
 	{{ end }}
 
 	location / {
+		proxy_connect_timeout       300;
+		proxy_send_timeout          300;
+		proxy_read_timeout          300;
+		send_timeout                300;
 		{{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
 		uwsgi_pass {{ trim $proto }}://{{ trim $upstream_name }};
@@ -322,7 +330,3 @@ server {
 {{ end }}
 
 client_max_body_size 100m;
-proxy_connect_timeout       300;
-proxy_send_timeout          300;
-proxy_read_timeout          300;
-send_timeout                300;
